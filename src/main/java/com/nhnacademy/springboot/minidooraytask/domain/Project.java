@@ -8,15 +8,16 @@ import javax.persistence.*;
 @Entity
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
     private Long projectId;
 
-    @Column(name = "admin_id")
-    private Long project_manager_Id;
-
     @Column(name = "project_name")
     private String projectName;
+
+    @Column(name = "project_manager_Id")
+    private String projectManagerId;
+
 
     @Column(name = "projectStatus")
     private String projectStatus;

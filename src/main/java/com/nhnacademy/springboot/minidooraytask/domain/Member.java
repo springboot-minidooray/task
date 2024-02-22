@@ -3,10 +3,7 @@ package com.nhnacademy.springboot.minidooraytask.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -14,6 +11,12 @@ import java.io.Serializable;
 public class Member {
     @EmbeddedId
     private Pk pk;
+
+    @ManyToOne
+    @MapsId("projectId")
+    @JoinColumn(name = "project_id")
+    private Project project;
+
 
     @Embeddable
     @NoArgsConstructor

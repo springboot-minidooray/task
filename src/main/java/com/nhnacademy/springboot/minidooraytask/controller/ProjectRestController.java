@@ -1,10 +1,10 @@
 package com.nhnacademy.springboot.minidooraytask.controller;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
 import com.nhnacademy.springboot.minidooraytask.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +29,11 @@ public class ProjectRestController {
     @PostMapping
     public Project createProject(@RequestBody Project project) {
         return projectService.createProject(project);
+    }
+
+    @PutMapping("/{projectId}")
+    public Project modifyProject(@PathVariable Long projectId, @RequestBody ProjectModifyDto projectDto) {
+        return projectService.modifyProject(projectId, projectDto);
     }
 
     @DeleteMapping("/{projectId}")

@@ -16,8 +16,8 @@ public class Comment {
     @Column(name = "task_id")
     private Integer taskId;
 
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "writer_id")
+    private Long writerId;
 
     private String contents;
 }

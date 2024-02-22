@@ -15,7 +15,8 @@ public class Task {
     @JoinColumn(name = "project_id")
     private Project project;
 
-
+    @Column(name = "task_manager_id")
+    private String taskManagerId;
 
     @ManyToOne
     @JoinColumn(name = "milestone_id")

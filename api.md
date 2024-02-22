@@ -45,7 +45,7 @@
 
       ```json
       [
-          {
+                    {
               "projectName": "프로젝트명",
               "project manager": "관리자 이름",
               "status": "활성"
@@ -225,8 +225,9 @@
     ```json
     {
     	"projectName": "프로젝트명",
-    	"관리자": "관리자(생성자)이름",
+    	"manager": "관리자(생성자)이름",
     	"status": "status",
+        "milestone": "수정할 마일스톤",
     	"tag": ["태그명"]
     }
     ```

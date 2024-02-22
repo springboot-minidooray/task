@@ -1,0 +1,27 @@
+GET http://localhost:8080/projects HTTP/1.1
+
+###
+
+POST http://localhost:8080/projects HTTP/1.1
+Content-Type: application/json
+
+{
+  "projectName": "프로젝트1",
+  "projectManagerId": "관리자 Id",
+  "projectStatus": "활성"
+}
+
+###
+
+
+PUT http://localhost:8080/projects/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "projectName": "프로젝트1",
+  "projectStatus": "휴면"
+}
+
+###
+
+DELETE http://localhost:8080/projects/1 HTTP/1.1
