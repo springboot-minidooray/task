@@ -113,16 +113,6 @@
 
     ```json
     {
-    	"projectId": 1,
-    	"memberId": 1
-    }
-    ```
-
-- 멤버 수정 : PUT /projects/{projectId}/members/{memberId}
-
-    ```json
-    {
-    	"projectId": 1,
     	"memberId": 1
     }
     ```
