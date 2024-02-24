@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Task {
     @Id
     @Column(name = "task_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer taskId;
 
     @ManyToOne
@@ -25,4 +26,6 @@ public class Task {
     private String subject;
 
     private String contents;
+
+    private String status;
 }

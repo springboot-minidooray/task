@@ -2,7 +2,7 @@ package com.nhnacademy.springboot.minidooraytask.service;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
-import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotfoundException;
+import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
 import com.nhnacademy.springboot.minidooraytask.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class ProjectService {
         if (project.isPresent()) {
             return project.get();
         } else {
-            throw new ProjectNotfoundException(projectId);
+            throw new ProjectNotFoundException(projectId);
         }
     }
 
@@ -39,13 +39,13 @@ public class ProjectService {
             project.setProjectStatus(projectModifyDto.getProjectStatus());
             return projectRepository.save(project);
         } else {
-            throw new ProjectNotfoundException(projectId);
+            throw new ProjectNotFoundException(projectId);
         }
     }
 
     public void deleteProject(Long projectId) {
         if (!projectRepository.existsById(projectId)) {
-            throw new ProjectNotfoundException(projectId);
+            throw new ProjectNotFoundException(projectId);
         }
         projectRepository.deleteById(projectId);
     }
