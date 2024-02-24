@@ -3,15 +3,14 @@ package com.nhnacademy.springboot.minidooraytask.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @Entity
 public class Milestone {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "milestone_id")
     private Long milestoneId;
 
