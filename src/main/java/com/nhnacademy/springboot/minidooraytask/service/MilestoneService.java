@@ -14,7 +14,7 @@ import java.util.List;
 public class MilestoneService {
     private final MilestoneRepository milestoneRepository;
     public List<Milestone> getMilestones(Long projectId) {
-        return milestoneRepository.findAllById(Collections.singleton(projectId));
+        return milestoneRepository.findAllByProjectId(projectId);
     }
 
     public Milestone getMilestone(Long projectId, Long milestoneId) {
