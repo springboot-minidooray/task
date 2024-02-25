@@ -3,6 +3,7 @@ package com.nhnacademy.springboot.minidooraytask.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,5 +21,6 @@ public class Project {
 
 
     @Column(name = "projectStatus")
-    private String projectStatus;
+    private String status;
+
 }

@@ -3,15 +3,14 @@ package com.nhnacademy.springboot.minidooraytask.service;
 import com.nhnacademy.springboot.minidooraytask.domain.Milestone;
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.Task;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskModifyDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskRegisterDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
 import com.nhnacademy.springboot.minidooraytask.exception.MilestoneNotFountException;
 import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
 import com.nhnacademy.springboot.minidooraytask.exception.TaskNotFoundException;
-import com.nhnacademy.springboot.minidooraytask.repository.MilestoneRepository;
-import com.nhnacademy.springboot.minidooraytask.repository.ProjectRepository;
-import com.nhnacademy.springboot.minidooraytask.repository.TaskRepository;
+import com.nhnacademy.springboot.minidooraytask.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,13 +24,14 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;
     private final MilestoneRepository milestoneRepository;
+    private final TaskTagRepository taskTagRepository;
 
     public List<TaskListDto> getTasks(Long projectId) {
         return taskRepository.findAllByProject_projectId(projectId);
     }
 
-    public TaskListDto getTask(Long projectId, Integer taskId) {
-        return taskRepository.findByProject_ProjectIdAndTaskId(projectId, taskId);
+    public TaskDto getTask(Long projectId, Integer taskId) {
+        return taskTagRepository.getTask(projectId, taskId);
     }
 
     public TaskListDto createTask(Long projectId, TaskRegisterDto taskRegisterDto) {

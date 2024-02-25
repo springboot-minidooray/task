@@ -21,6 +21,11 @@ public class ProjectRestController {
         return projectService.getProjects();
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Project> getProjects(@PathVariable String userId) {
+        return projectService.getProjects(userId);
+    }
+
     @GetMapping("/{projectId}")
     public Project getProject(@PathVariable Long projectId) {
         return projectService.getProject(projectId);

@@ -40,12 +40,13 @@
 
 ### 프로젝트
 
-- 프로젝트 목록 조회 : GET /projects
+- 프로젝트 목록 조회 : GET /projects/user/{userId}
     - response
 
       ```json
       [
-                    {
+          {   
+              "ProjectId": "",
               "projectName": "프로젝트명",
               "project manager": "관리자 이름",
               "status": "활성"
@@ -60,7 +61,14 @@
       {
           "projectName": "프로젝트명",
           "project manager": "관리자 이름",
-          "tasks": [],
+          "tasks": [
+            {
+              "taskId": "",
+              "subject": "",
+              "taskStatus": "",
+              "taskManagerId": ""
+            }     
+          ],
           "status": "활성"
       }
       ```
@@ -113,6 +121,16 @@
 
     ```json
     {
+    	"projectId": 1,
+    	"memberId": 1
+    }
+    ```
+
+- 멤버 수정 : PUT /projects/{projectId}/members/{memberId}
+
+    ```json
+    {
+    	"projectId": 1,
     	"memberId": 1
     }
     ```
@@ -177,6 +195,7 @@
     ```json
     [
     	{
+            "taskId": "",
     		"projectName": "프로젝트명",
     		"status": "status",
     		"from": "생성자(관리자)이름"
@@ -189,13 +208,24 @@
 
     ```json
     {
-    	"projectName": "프로젝트명",
+        "subject": "",
     	"status": "status",
-    	"from": "생성자(관리자)이름",
-    	"milestone": "마일스톤",
+    	"taskManagerId": "생성자(관리자)이름",
+    	"milestone": {
+          "milestoneName": ""
+        } ,
     	"tags": [
-    		""
-    	]
+          {
+            "tagName":""
+          }
+    	],
+        "comments": [
+          {
+            "commentId": "",
+            "writerId": "",
+            "content": ""
+          }   
+        ]     
     }
     ```
 
@@ -215,9 +245,8 @@
     ```json
     {
     	"projectName": "프로젝트명",
-    	"manager": "관리자(생성자)이름",
+    	"관리자": "관리자(생성자)이름",
     	"status": "status",
-        "milestone": "수정할 마일스톤",
     	"tag": ["태그명"]
     }
     ```

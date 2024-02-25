@@ -6,9 +6,9 @@ POST http://localhost:8080/projects/1/milestones HTTP/1.1
 Content-Type: application/json
 
 {
-  "milestone": "마일스톤2",
-  "startDate": "2024-02-02",
-  "endDate": "2024-02-02"
+  "milestone": "마일스톤1",
+  "startDate": "2024-01-01",
+  "endDate": "2024-01-01"
 }
 
 ###

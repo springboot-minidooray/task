@@ -22,7 +22,7 @@ public class TaskTagService {
     private final TagService tagService;
 
     public List<TaskTagResponse> getTaskTags(Long projectId, Integer taskId) {
-        return taskTagRepository.findAllPk_Task_TaskIdAndPk_Task_Project_ProjectId(taskId, projectId);
+        return taskTagRepository.findAllByTaskId(taskId);
     }
 
     public TaskTagResponse createTaskTag(Long projectId, Integer taskId, Long tagId) {

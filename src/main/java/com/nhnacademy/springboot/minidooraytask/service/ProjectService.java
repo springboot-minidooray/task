@@ -19,6 +19,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public List<Project> getProjects(String userId) {
+        return projectRepository.findAllByMemberId(userId);
+    }
+
     public Project getProject(Long projectId) {
         Optional<Project> project = projectRepository.findById(projectId);
         if (project.isPresent()) {
@@ -36,7 +40,7 @@ public class ProjectService {
         if (projectRepository.existsById(projectId)) {
             Project project = projectRepository.findById(projectId).get();
             project.setProjectName(projectModifyDto.getProjectName());
-            project.setProjectStatus(projectModifyDto.getProjectStatus());
+            project.setStatus(projectModifyDto.getProjectStatus());
             return projectRepository.save(project);
         } else {
             throw new ProjectNotFoundException(projectId);

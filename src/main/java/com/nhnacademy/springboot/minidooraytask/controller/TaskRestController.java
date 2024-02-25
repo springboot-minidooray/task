@@ -1,5 +1,6 @@
 package com.nhnacademy.springboot.minidooraytask.controller;
 
+import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskModifyDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskRegisterDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
@@ -22,7 +23,7 @@ public class TaskRestController {
     }
 
     @GetMapping("/{taskId}")
-    public TaskListDto getTask(@PathVariable Long projectId, @PathVariable Integer taskId) {
+    public TaskDto getTask(@PathVariable Long projectId, @PathVariable Integer taskId) {
         return taskService.getTask(projectId, taskId);
     }
 

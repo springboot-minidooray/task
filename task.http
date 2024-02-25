@@ -1,0 +1,17 @@
+GET http://localhost:8080/projects/1/tasks/1 HTTP/1.1
+
+###
+
+POST http://localhost:8080/projects/1/tasks HTTP/1.1
+Content-Type: application/json
+
+{
+  "taskManagerId": "1",
+  "subject": "업무1",
+  "contents": "업무 내용",
+  "status": "활성"
+}
+
+###
+
+DELETE http://localhost:8080/projects/1/tasks/1 HTTP/1.1

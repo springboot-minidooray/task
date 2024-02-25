@@ -31,10 +31,6 @@ public class Task {
     private String status;
 
     @OneToMany(mappedBy = "task")
-    @JoinColumn
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "task")
-    @JoinColumn
-    private List<TaskTag> tags;
 }
