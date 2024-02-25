@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    @Query("select p from Project p inner join Member m where m.pk.memberId=:userId")
+    @Query("select p from Member m join m.project p where m.pk.memberId=:userId")
     List<Project> findAllByMemberId(@Param("userId") String userId);
 }

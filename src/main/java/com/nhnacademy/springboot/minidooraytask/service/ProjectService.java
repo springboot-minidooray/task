@@ -2,8 +2,11 @@ package com.nhnacademy.springboot.minidooraytask.service;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectWithTask;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
 import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
 import com.nhnacademy.springboot.minidooraytask.repository.ProjectRepository;
+import com.nhnacademy.springboot.minidooraytask.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProjectService {
     private final ProjectRepository projectRepository;
+    private final TaskRepository taskRepository;
 
     public List<Project> getProjects() {
         return projectRepository.findAll();
@@ -23,10 +27,12 @@ public class ProjectService {
         return projectRepository.findAllByMemberId(userId);
     }
 
-    public Project getProject(Long projectId) {
-        Optional<Project> project = projectRepository.findById(projectId);
-        if (project.isPresent()) {
-            return project.get();
+    public ProjectWithTask getProject(Long projectId) {
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+        if (optionalProject.isPresent()) {
+            Project project = optionalProject.get();
+            List<TaskListDto> taskListDto = taskRepository.findAllByProject_projectId(projectId);
+            return new ProjectWithTask(project.getProjectName(), project.getProjectManagerId(),taskListDto, project.getStatus());
         } else {
             throw new ProjectNotFoundException(projectId);
         }

@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.minidooraytask.controller;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectWithTask;
 import com.nhnacademy.springboot.minidooraytask.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class ProjectRestController {
     }
 
     @GetMapping("/{projectId}")
-    public Project getProject(@PathVariable Long projectId) {
+    public ProjectWithTask getProject(@PathVariable Long projectId) {
         return projectService.getProject(projectId);
     }
 
