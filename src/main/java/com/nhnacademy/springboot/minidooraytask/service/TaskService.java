@@ -3,10 +3,7 @@ package com.nhnacademy.springboot.minidooraytask.service;
 import com.nhnacademy.springboot.minidooraytask.domain.Milestone;
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.Task;
-import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskDto;
-import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskModifyDto;
-import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskRegisterDto;
-import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.*;
 import com.nhnacademy.springboot.minidooraytask.exception.MilestoneNotFountException;
 import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
 import com.nhnacademy.springboot.minidooraytask.exception.TaskNotFoundException;
@@ -17,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +29,21 @@ public class TaskService {
     }
 
     public TaskDto getTask(Long projectId, Integer taskId) {
-        return taskTagRepository.getTask(projectId, taskId);
+        Optional<Task> optionalTask = taskRepository.findById(taskId);
+        if (optionalTask.isEmpty()) {
+            throw new TaskNotFoundException(taskId);
+        }
+
+        Task task = optionalTask.get();
+
+        MilestoneName milestoneName = null;
+        if(task.getMilestone() != null) {
+            milestoneName = milestoneRepository.findByMilestoneId(task.getMilestone().getMilestoneId());
+        }
+        List<TaskTagName> taskTagNames = taskTagRepository.findAllByTaskId(taskId).stream().map(taskTag -> new TaskTagName(taskTag.getPk().getTag().getTagName())).collect(Collectors.toList());
+        List<CommentDto> commentDto = task.getComments().stream().map(comment -> new CommentDto(comment.getCommentId(), comment.getWriterId(), comment.getContents())).collect(Collectors.toList());
+
+        return new TaskDto(task.getSubject(), task.getStatus(), task.getTaskManagerId(), milestoneName, taskTagNames, commentDto);
     }
 
     public TaskListDto createTask(Long projectId, TaskRegisterDto taskRegisterDto) {
@@ -40,13 +52,12 @@ public class TaskService {
         if (project.isEmpty()) {
             throw new ProjectNotFoundException(projectId);
         }
-        Optional<Milestone> milestone = milestoneRepository.findById(taskRegisterDto.getMilestoneId());
-        if (milestone.isEmpty()){
-            throw new MilestoneNotFountException(taskRegisterDto.getMilestoneId());
+        if (taskRegisterDto.getMilestoneId() != null) {
+            Optional<Milestone> milestone = milestoneRepository.findById(taskRegisterDto.getMilestoneId());
+            task.setMilestone(milestone.get());
         }
         task.setProject(project.get());
         task.setTaskManagerId(taskRegisterDto.getTaskManagerId());
-        task.setMilestone(milestone.get());
         task.setSubject(taskRegisterDto.getSubject());
         task.setContents(taskRegisterDto.getContents());
         task.setStatus(taskRegisterDto.getStatus());

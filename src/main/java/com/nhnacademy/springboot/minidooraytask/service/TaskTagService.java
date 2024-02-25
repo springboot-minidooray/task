@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,8 @@ public class TaskTagService {
     private final TagService tagService;
 
     public List<TaskTagResponse> getTaskTags(Long projectId, Integer taskId) {
-        return taskTagRepository.findAllByTaskId(taskId);
+        List<TaskTag> taskTag = taskTagRepository.findAllByTaskId(taskId);
+        return taskTag.stream().map(tt -> new TaskTagResponse(tt.getPk().getTask().getTaskId(), tt.getPk().getTag().getTagId())).collect(Collectors.toList());
     }
 
     public TaskTagResponse createTaskTag(Long projectId, Integer taskId, Long tagId) {

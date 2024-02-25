@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class TaskRegisterDto {
-    private Long projectId;
-
     private String taskManagerId;
 
     private Long milestoneId;

@@ -1,30 +1,18 @@
 package com.nhnacademy.springboot.minidooraytask.domain.dto;
 
-import com.nhnacademy.springboot.minidooraytask.domain.Tag;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public interface TaskDto {
-    String getSubject();
-    String getStatus();
-    MilestoneName getMilestone();
-    TaskTagList getTags();
-    CommentList getComments();
+import java.util.List;
 
-    interface MilestoneName {
-        String getMilestoneName();
-    }
-
-    interface TaskTagList {
-        Tag getTag();
-
-        interface TagName {
-            String getTagName();
-        }
-    }
-
-    interface CommentList {
-        Integer getCommentId();
-        String getWriterId();
-        String getContents();
-    }
-
+@Data
+@AllArgsConstructor
+public class TaskDto {
+    private String subject;
+    private String status;
+    private String taskManagerId;
+    private MilestoneName milestone;
+    private List<TaskTagName> tags;
+    private List<CommentDto> comments;
 }
+
