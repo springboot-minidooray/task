@@ -1,6 +1,8 @@
 package com.nhnacademy.springboot.minidooraytask.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -14,6 +16,8 @@ public class TaskTag {
 
     @Embeddable
     @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
     public static class Pk implements Serializable {
         @ManyToOne
         @JoinColumn(name = "task_id")

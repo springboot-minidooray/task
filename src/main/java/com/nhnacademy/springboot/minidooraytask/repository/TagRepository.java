@@ -12,4 +12,6 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
     Tag findAllByProject_ProjectIdAndTagId(Long projectId, Long tagId);
 
     void deleteByProject_ProjectIdAndTagId(Long projectId, Long tagId);
+
+    Tag findByProject_ProjectIdAndTagId(Long projectId, Long tagId);
 }

@@ -23,6 +23,10 @@ public class TagService {
         return tagRepository.findAllByProject_ProjectId(projectId);
     }
 
+    public Tag getTag(Long projectId, Long tagId) {
+        return tagRepository.findByProject_ProjectIdAndTagId(projectId, tagId);
+    }
+
     public Tag createTag(Long projectId, TagName tagName) {
         Optional<Project> optionalProject = projectRepository.findById(projectId);
         if (optionalProject.isEmpty()) {
