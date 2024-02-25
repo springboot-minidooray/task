@@ -39,9 +39,11 @@ public class ProjectService {
         }
     }
 
-    public ProjectRegisterDto createProject(Project project) {
-        project = projectRepository.save(project);
-        return new ProjectRegisterDto(project.getProjectName(), project.getProjectManagerId());
+    public Project createProject(ProjectRegisterDto projectRegisterDto) {
+        Project project = new Project();
+        project.setProjectName(projectRegisterDto.getProjectName());
+        project.setProjectManagerId(projectRegisterDto.getProjectManagerId());
+        return projectRepository.save(project);
     }
 
     public Project modifyProject(Long projectId, ProjectModifyDto projectModifyDto) {

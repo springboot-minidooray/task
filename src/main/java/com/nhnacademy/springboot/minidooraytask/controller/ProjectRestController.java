@@ -34,8 +34,8 @@ public class ProjectRestController {
     }
 
     @PostMapping
-    public ProjectRegisterDto createProject(@RequestBody Project project) {
-        return projectService.createProject(project);
+    public Project createProject(@RequestBody ProjectRegisterDto projectRegisterDto) {
+        return projectService.createProject(projectRegisterDto);
     }
 
     @PutMapping("/{projectId}")
