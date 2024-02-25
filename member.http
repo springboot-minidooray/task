@@ -1,8 +1,8 @@
-GET http://localhost:8080/projects/1/members HTTP/1.1
+GET http://localhost:9999/projects/1/members HTTP/1.1
 
 ###
 
-POST http://localhost:8080/projects/2/members HTTP/1.1
+POST http://localhost:9999/projects/2/members HTTP/1.1
 Content-Type: application/json
 
 {
@@ -11,4 +11,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8080/projects/1/members/1 HTTP/1.1
+DELETE http://localhost:9999/projects/1/members/1 HTTP/1.1

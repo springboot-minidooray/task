@@ -121,7 +121,6 @@
 
     ```json
     {
-    	"projectId": 1,
     	"memberId": 1
     }
     ```
@@ -130,7 +129,6 @@
 
     ```json
     {
-    	"projectId": 1,
     	"memberId": 1
     }
     ```
