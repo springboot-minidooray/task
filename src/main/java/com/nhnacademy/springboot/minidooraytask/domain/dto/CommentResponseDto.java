@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TaskResponseDto {
+public class CommentResponseDto {
     private Integer taskId;
-    private String subject;
-    private String status;
-    private String taskManagerId;
+    private String writerId;
+    private String contents;
 }

@@ -2,22 +2,22 @@ package com.nhnacademy.springboot.minidooraytask.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Comment {
     @Id
-    @Column(name = "command_id")
-    private Integer commandId;
+    @Column(name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer commentId;
 
-    @Column(name = "task_id")
-    private Integer taskId;
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     @Column(name = "writer_id")
-    private Long writerId;
+    private String writerId;
 
     private String contents;
 }

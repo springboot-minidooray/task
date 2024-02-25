@@ -5,7 +5,7 @@ import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.Task;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskModifyDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskRegisterDto;
-import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskResponseDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
 import com.nhnacademy.springboot.minidooraytask.exception.MilestoneNotFountException;
 import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
 import com.nhnacademy.springboot.minidooraytask.exception.TaskNotFoundException;
@@ -26,15 +26,15 @@ public class TaskService {
     private final ProjectRepository projectRepository;
     private final MilestoneRepository milestoneRepository;
 
-    public List<TaskResponseDto> getTasks(Long projectId) {
+    public List<TaskListDto> getTasks(Long projectId) {
         return taskRepository.findAllByProject_projectId(projectId);
     }
 
-    public TaskResponseDto getTask(Long projectId, Integer taskId) {
+    public TaskListDto getTask(Long projectId, Integer taskId) {
         return taskRepository.findByProject_ProjectIdAndTaskId(projectId, taskId);
     }
 
-    public TaskResponseDto createTask(Long projectId, TaskRegisterDto taskRegisterDto) {
+    public TaskListDto createTask(Long projectId, TaskRegisterDto taskRegisterDto) {
         Task task = new Task();
         Optional<Project> project = projectRepository.findById(projectId);
         if (project.isEmpty()) {
@@ -52,7 +52,7 @@ public class TaskService {
         task.setStatus(taskRegisterDto.getStatus());
 
         Task responseTask = taskRepository.save(task);
-        return new TaskResponseDto(
+        return new TaskListDto(
                 responseTask.getTaskId(),
                 responseTask.getSubject(),
                 responseTask.getStatus(),
@@ -60,7 +60,7 @@ public class TaskService {
         );
     }
 
-    public TaskResponseDto modifyTask(Integer taskId, TaskModifyDto taskModifyDto) {
+    public TaskListDto modifyTask(Integer taskId, TaskModifyDto taskModifyDto) {
         Optional<Task> optionalTask = taskRepository.findById(taskId);
         if (optionalTask.isEmpty()) {
             throw new TaskNotFoundException(taskId);
@@ -73,7 +73,7 @@ public class TaskService {
         task.setStatus(task.getStatus());
 
         taskRepository.save(task);
-        return new TaskResponseDto(
+        return new TaskListDto(
                 task.getTaskId(),
                 task.getSubject(),
                 task.getStatus(),

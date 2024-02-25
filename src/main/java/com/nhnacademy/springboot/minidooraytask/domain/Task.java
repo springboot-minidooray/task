@@ -3,6 +3,7 @@ package com.nhnacademy.springboot.minidooraytask.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -28,4 +29,12 @@ public class Task {
     private String contents;
 
     private String status;
+
+    @OneToMany(mappedBy = "task")
+    @JoinColumn
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "task")
+    @JoinColumn
+    private List<TaskTag> tags;
 }
