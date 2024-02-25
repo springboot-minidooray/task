@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.minidooraytask.controller;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectRegisterDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectWithTask;
 import com.nhnacademy.springboot.minidooraytask.service.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class ProjectRestController {
     }
 
     @PostMapping
-    public Project createProject(@RequestBody Project project) {
+    public ProjectRegisterDto createProject(@RequestBody Project project) {
         return projectService.createProject(project);
     }
 

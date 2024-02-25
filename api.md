@@ -233,10 +233,10 @@
 
     ```json
     {
-    	"projectName": "프로젝트명",
-    	"관리자": "관리자(생성자)이름",
-    	"status": "status",
-    	"tag": ["태그명"]
+    	"subject": "업무제목",
+    	"taskManagerId": "관리자(생성자)이름",
+    	"contents": "내용",
+    	"status": "status"
     }
     ```
 

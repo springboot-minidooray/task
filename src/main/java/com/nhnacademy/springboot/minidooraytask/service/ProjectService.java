@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.minidooraytask.service;
 
 import com.nhnacademy.springboot.minidooraytask.domain.Project;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectModifyDto;
+import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectRegisterDto;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.ProjectWithTask;
 import com.nhnacademy.springboot.minidooraytask.domain.dto.TaskListDto;
 import com.nhnacademy.springboot.minidooraytask.exception.ProjectNotFoundException;
@@ -38,8 +39,9 @@ public class ProjectService {
         }
     }
 
-    public Project createProject(Project project) {
-        return projectRepository.save(project);
+    public ProjectRegisterDto createProject(Project project) {
+        project = projectRepository.save(project);
+        return new ProjectRegisterDto(project.getProjectName(), project.getProjectManagerId());
     }
 
     public Project modifyProject(Long projectId, ProjectModifyDto projectModifyDto) {

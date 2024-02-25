@@ -2,11 +2,11 @@ GET http://localhost:8080/projects/1/members HTTP/1.1
 
 ###
 
-POST http://localhost:8080/projects/1/members HTTP/1.1
+POST http://localhost:8080/projects/2/members HTTP/1.1
 Content-Type: application/json
 
 {
-  "memberId": "2"
+  "memberId": "3"
 }
 
 ###
